@@ -1,0 +1,42 @@
+.contributors,
+.source {
+    line-height: 1.25rem;
+    letter-spacing: .03125rem;
+    font-weight: 400;
+    font-size: .75rem;
+}
+
+.source {
+    display: inline-block;
+    padding-right: 4px;
+}
+
+.contributors ul {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+.contributors li {
+    display: inline-block;
+}
+
+.contributors li a {
+    padding-right: 4px;
+}
+
+.contributors li:after {
+    content: ",";
+    display: inline-block;
+    padding-right: 4px;
+}
+
+.contributors li:nth-last-child(2):after {
+    content: "and";
+    display: inline-block;
+}
+
+.contributors li:last-of-type:after {
+    content: "";
+    display: inline-block;
+}

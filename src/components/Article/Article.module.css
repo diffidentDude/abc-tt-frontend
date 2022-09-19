@@ -1,9 +1,14 @@
+body {
+  font-size: 16px;
+}
+
 .article {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin-left: 0;
   margin-right: 0;
+
 }
 
 .header {
@@ -19,13 +24,17 @@
   line-height: 3rem;
 }
 
-.contributors,
-.date {
-  display: block;
-  line-height: 1.25rem;
-  letter-spacing: .03125rem;
-  font-weight: 400;
-  font-size: .75rem;
+.feature {
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.feature figcaption {
+  padding: 16px;
+}
+
+.main {
+  border-left: 1px solid #e6e6e6;
+  border-right: 1px solid #e6e6e6;
 }
 
 @media (min-width: 62em) {
@@ -43,6 +52,14 @@
   }
 }
 
+@media (min-width: 67em) {
+
+  .content figure {
+    margin-right: -4rem;
+    margin-left: -4rem;
+  }
+}
+
 @media (max-width: 62em) {
   .main {
     width: 100%;
@@ -56,8 +73,10 @@
 }
 
 .content {
-  width: 100%;
+  max-width: 638px;
   padding: 3rem 1rem 0 1rem;
+  margin: 0 auto;
+  position: relative;
 }
 
 .sidebar h2 {

@@ -1,35 +1,43 @@
 import React from 'react';
+import { Contributor, NodeDef, Source } from '../../data/data';
+import { ArticleMetaData } from '../ArticleMetaData/ArticleMetaData';
+import { Content } from '../Content/Content';
+import { Dates } from '../Dates/Dates';
+import { Embed } from '../Embed/Embed';
 import styles from './Article.module.css';
-
 interface Props {
-  children: React.ReactNode;
   title: string;
-  contributors?: string[];
+  contributors?: Array<Contributor>;
   dates?: {
-    posted: string;
-    updated?: string;
+    displayPublished: string;
+    displayUpdated?: string;
   };
+  text: NodeDef;
+  embeddedMedia: Array<EmbedItem>;
+  source?: Source;
+  mediaFeatured: Array<EmbedItem>;
 };
 
-const Article = ({ children, title, contributors, dates }: Props): JSX.Element => (
-  <article className={styles.article}>
+interface EmbedItem {
+  docType: string;
+}
+
+const Article = ({ title, contributors, dates, text, embeddedMedia, source, mediaFeatured }: Props): JSX.Element => {
+
+  return <article className={styles.article}>
     <div className={styles.main}>
       <div className={styles.header}>
         <h1>{title}</h1>
-        {contributors && contributors.length && (
-          <span className={styles.contributors}>
-            By {contributors.join(', ')}
-          </span>
-        )}
-        {dates && (
-          <span className={styles.date}>
-            {dates.posted && (<span>Posted {dates.posted}</span>)}
-            {dates.updated && (<span>{' '}Updated {dates.updated}</span>)}
-          </span>
-        )}
+        <ArticleMetaData contributors={contributors} dates={dates} source={source} />
+      </div>
+      <div className={styles.feature}>
+        {mediaFeatured && mediaFeatured.map((feature) => {
+          return <Embed embed={feature} />
+        })}
       </div>
       <div className={styles.content}>
-        {children}
+        <Content contents={text} embeddedMedia={embeddedMedia} />
+        <Dates dates={dates} short={true} />
       </div>
     </div>
     <div className={styles.sidebar}>
@@ -37,6 +45,6 @@ const Article = ({ children, title, contributors, dates }: Props): JSX.Element =
       <div className={styles.moreStories} />
     </div>
   </article>
-);
+};
 
 export default Article;
